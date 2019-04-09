@@ -20,7 +20,6 @@ class MetadataContainer extends Component {
         recapVideoTimeElapsed:123214,
         id:"",
         ongoing:true,
-        id:"",
         host_avatar:"",
         host_avatar_rect:"",
         lecture_banner:"",
@@ -60,7 +59,7 @@ class MetadataContainer extends Component {
         hostTitle:"",
         hostTag:"",
         hostIntro:"",
-        lectureTags:["aaa","bbb"],
+        lectureTags:[],
         lectureIntro:"",
         startDate:"",
         startTime:0,
@@ -76,6 +75,16 @@ class MetadataContainer extends Component {
     }
     handleSubmit(event){
       event.preventDefault()
+      let submitflag = true
+      // for (let k of Object.values(this.state)){
+      //   if (k === ""){
+      //     submitflag = false
+      //     break
+
+      //   }
+
+      // }
+    if(submitflag){
       const metedatajson = JsonUtils.mapToJson(JsonUtils.objToStrMap(this.state))
       console.log(metedatajson)
       const url = "http://localhost:8080/family/lecture"
@@ -93,7 +102,7 @@ class MetadataContainer extends Component {
           // console.log(ID)
           // console.log(response)
           this.setState({id: ID})
-           alert("Uploading text part successful!")
+           alert("文字部分上传成功!")
           // eventProxy.trigger("id",ID)
           // this.props.transferId(ID)
       }).catch(error => console.error("Error",error))
@@ -104,8 +113,8 @@ class MetadataContainer extends Component {
       // var formData = new FormData()
       // this.state.map(item => item.)
       // console.log(this.state)
-      formData.append("id","e4de3598-994b-4f60-8c13-c92366739bc8")
-      // formData.append("id",this.state.id)
+      // formData.append("id","e4de3598-994b-4f60-8c13-c92366739bc8")
+      formData.append("id",this.state.id)
       // for (var i=0; i < photos.files.length; i++){
       //     formData.append()
       // }
@@ -116,20 +125,53 @@ class MetadataContainer extends Component {
           headers:{
             'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyZGU0YmMxZi0zY2IxLTQ4ZDMtOWY3NC0wYTAxYmU5M2RkZDQiLCJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJzdWIiOiJGYW1pbHktVXNlci1iOTNjN2YxNC0xMjI0LTQ1OGItYWFmMS02NTI5NjM3MTA5M2QiLCJpYXQiOjE1NTM4OTU4MDgsImV4cCI6MTU1NjQ4NzgwOCwiYXV0aG9yaXRpZXMiOlsiU1lTVEVNX0FETUlOIl0sInJlZnJlc2hDb3VudCI6MCwicmVmcmVzaExpbWl0IjoyMDAwfQ.LwFp-NR5Wdmo2lxzOoRM7t0uze1EFcLhRGiVfdJR6cI'
           }
-        }).then(res => res.json()).then(response => {
+        }).then(res => {
+          if(res.ok){
+          // console.log(res.status)
+          res.json().then(response => {
             console.log(response)
+            alert("图片部分上成功!")
+            this.setState({
+              lectureName:"",
+              hostName:"",
+              hostTitle:"",
+              hostTag:"",
+              hostIntro:"",
+              lectureTags:[],
+              lectureIntro:"",
+              startDate:"",
+              startTime:0,
+              recapVideoTimeElapsed:0,
+              id:"",
+              ongoing:false,
+              host_avatar:"",
+              host_avatar_rect:"",
+              lecture_banner:"",
+              sharing_pic:"",
+            })
+            formData = new FormData()
           //   this.setState({id: ID})
           //   alert("Lecture text information upload success!")
           //   eventProxy.trigger("id",ID)
             // this.props.transferId(ID)
-        }).catch(error => console.error("Error",error))})
+        })
+      }
+      else{
+        alert(res.statusText)
+      }
+      }).catch(error => console.error("Error",error))
+      })
     }
     else{
       alert(res.statusText)
     }
         
       })
-      
+    }
+    else{
+      console.log("what happens?")
+      // alert("Need to upload all necessary data to submit!")
+    }
     //   console.log(JsonUtils.mapToJson(JsonUtils.objToStrMap(this.state)))
     }
     // componentDidUpdate(){

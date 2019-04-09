@@ -3,7 +3,7 @@ import LectureTag from "../Component/LectureTag"
 import JsonUtils from "../JsonParse/JsonUitl";
 // import eventProxy from "react-eventproxy/src/eventProxy";
 var counter = 2
-class LectureTagsContainer extends Component{
+class LectureInfoTagsContainer extends Component{
 
     constructor(props){
         // console.log(props.tags)
@@ -52,22 +52,22 @@ class LectureTagsContainer extends Component{
         this.handleDelete = this.handleDelete.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
     }
-    // componentWillReceiveProps(nextProps){
-    //     // console.log(typeof(nextProps.tags))
-    //     if (JsonUtils.mapToJson(JsonUtils.objToStrMap(nextProps.tags)) == JsonUtils.mapToJson(JsonUtils.objToStrMap([]))){
-    //         this.setState({lectureTags:[{id:1,value:""}]})
-    //         counter = 1
-    //     }
-    //     else{
-    //         console.log(nextProps.tags)
-    //     const newtags = []
-    //     for(let i=0;i < nextProps.tags.length;i++){
-    //         newtags.push({id:i,value:nextProps.tags[i]})
-    //     }
-    //     this.setState({lectureTags:newtags})
-    //     // console.log(newtags)
-    // }
-    // }
+    componentWillReceiveProps(nextProps){
+        // console.log(typeof(nextProps.tags))
+        if (JsonUtils.mapToJson(JsonUtils.objToStrMap(nextProps.tags)) == JsonUtils.mapToJson(JsonUtils.objToStrMap([]))){
+            this.setState({lectureTags:[{id:1,value:""}]})
+            counter = 1
+        }
+        else{
+            console.log(nextProps.tags)
+        const newtags = []
+        for(let i=0;i < nextProps.tags.length;i++){
+            newtags.push({id:i,value:nextProps.tags[i]})
+        }
+        this.setState({lectureTags:newtags})
+        // console.log(newtags)
+    }
+    }
 
     // componentDidUpdate(prevProps){
     //     if(this.props.lectureTags)
@@ -204,4 +204,4 @@ class LectureTagsContainer extends Component{
 
 
 }
-export default LectureTagsContainer;
+export default LectureInfoTagsContainer;

@@ -4,7 +4,7 @@ import LectureTagsContainer from "../Container/LectureTagsContainer"
 function Metadata(props){
     return(
         <div className="Metadata">
-            <form>
+            <form onSubmit={props.handleSubmit}>
                 <br />
                         分享会名称:
                 <br />
@@ -15,6 +15,7 @@ function Metadata(props){
                 placeholder="LectureName"
                 onChange={props.handleChange}
                 size="12"
+                required
                 />
                 <br />
                         主讲人名字:
@@ -26,6 +27,7 @@ function Metadata(props){
                 placeholder="HostName"
                 onChange={props.handleChange}
                 size="12"
+                required
                 />
                 <br />
                         主讲人头衔:
@@ -37,6 +39,7 @@ function Metadata(props){
                 placeholder="hostTitle"
                 onChange={props.handleChange}
                 size="12"
+                required
                 />
                 <br />
                     讲师标签:
@@ -48,6 +51,7 @@ function Metadata(props){
                 placeholder="hostTag"
                 onChange={props.handleChange}
                 size="12"
+                required
                 />
                 {/* <br />
                 <input 
@@ -67,12 +71,14 @@ function Metadata(props){
                 cols="40"
                 placeholder="hostIntro"
                 onChange={props.handleChange}
+                required
                 />
                 <br />
                     分享会标签:
                 <br />
                 <LectureTagsContainer 
                 setState={props.setState}
+                tags = {[]}
                 />
                 {/* Todo lectureTags!!!!!! */}
                 {/* <input 
@@ -93,6 +99,7 @@ function Metadata(props){
                 cols="40"
                 placeholder="lectureIntro"
                 onChange={props.handleChange}
+                required
                 />
                 {/* <input 
                 type="text" 
@@ -110,6 +117,7 @@ function Metadata(props){
                 value={props.startDate}
                 // placeholder="startTime"
                 onChange={props.handleChange}
+                required
                 />
                 {/* <br />
                     RecapVideoTimeElapsed:
@@ -154,6 +162,7 @@ function Metadata(props){
                 value={props.host_avatar}
                 accept="image/png"
                 onChange={props.handleChange}
+                required
                 />
                 </label> :  <label>
             <div className= "hint">{props.host_avatar}</div>
@@ -178,6 +187,7 @@ function Metadata(props){
                 value={props.host_avatar_rect}
                 accept="image/png"
                 onChange={props.handleChange}
+                required
                 />
                 </label> :  <label>
             <div className= "hint">{props.host_avatar_rect}</div>
@@ -202,6 +212,7 @@ function Metadata(props){
                 value={props.lecture_banner}
                 accept="image/png"
                 onChange={props.handleChange}
+                required
                 />
                 </label> :  <label>
             <div className= "hint">{props.lecture_banner}</div>
@@ -227,6 +238,7 @@ function Metadata(props){
             value={props.sharing_pic}
             accept="image/png"
             onChange={props.handleChange}
+            required
             />
             </label> :  <label>
             <div className= "hint">{props.sharing_pic}</div>
@@ -241,10 +253,11 @@ function Metadata(props){
             }            
             
             <br />
-            <button 
+            <input type="submit" className="btn btn-primary btn-sm" value="提交" style={{marginRight:"5px"}}/>
+            {/* <button 
             className="btn btn-primary btn-sm"
             onClick={props.handleSubmit} 
-            style={{marginRight:"5px"}}>提交</button>
+            style={{marginRight:"5px"}}>提交</button> */}
             <button 
             className="btn btn-primary btn-sm"
             onClick={props.handleReset}>重置</button>

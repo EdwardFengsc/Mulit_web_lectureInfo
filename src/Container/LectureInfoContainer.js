@@ -36,6 +36,7 @@ class LectureInfoContainer extends Component{
         this.handleSubmit = this.handleSubmit.bind(this)
     }
     handleSelectChange(event){
+        // event.preventDefault()
         const {name,value} = event.target
         // this.setState(prevState =>{
         //     console.log(prevState.allLectureInfo[key])
@@ -62,7 +63,11 @@ class LectureInfoContainer extends Component{
             host_avatar_uri:prevState.allLectureInfo[value].hostAvatarUri,
             host_avatar_rect_uri:prevState.allLectureInfo[value].hostAvatarRectUri,
             lecture_banner_uri:prevState.allLectureInfo[value].bannerUri,
-            sharing_pic_uri:prevState.allLectureInfo[value].sharingPicUri
+            sharing_pic_uri:prevState.allLectureInfo[value].sharingPicUri,
+            sharing_pic:"",
+            lecture_banner:"",
+            host_avatar_rect:"",
+            host_avatar:""
             // host_avatar:prevState.allLectureInfo[value].host_avatar,
             // host_avatar_rect:prevState.allLectureInfo[value].host_avatar_rect,
             // lecture_banner:prevState.allLectureInfo[value].lecture_banner,
@@ -104,7 +109,7 @@ class LectureInfoContainer extends Component{
           hostTitle:"",
           hostTag:"",
           hostIntro:"",
-          lectureTags:["aaa","bbb"],
+          lectureTags:[],
           lectureIntro:"",
           startDate:"",
           startTime:0,
@@ -112,9 +117,13 @@ class LectureInfoContainer extends Component{
           id:"",
           ongoing:false,
           host_avatar:"",
+          host_avatar_uri:"",
           host_avatar_rect:"",
+          host_avatar_rect_uri:"",
           lecture_banner:"",
+          lecture_banner_uri:"",
           sharing_pic:"",
+          sharing_pic_uri:""
         })
     })
     formData = new FormData()
@@ -139,7 +148,7 @@ class LectureInfoContainer extends Component{
             console.log(ID)
             // console.log(response)
             this.setState({id: ID})
-             alert("Uploading text part successful!")
+            //  alert("Uploading text part successful!")
             // eventProxy.trigger("id",ID)
             // this.props.transferId(ID)
         }).catch(error => console.error("Error",error))
@@ -150,8 +159,8 @@ class LectureInfoContainer extends Component{
         // var formData = new FormData()
         // this.state.map(item => item.)
         // console.log(this.state)
-        formData.append("id","e4de3598-994b-4f60-8c13-c92366739bc8")
-        // formData.append("id",this.state.id)
+        // formData.append("id","e4de3598-994b-4f60-8c13-c92366739bc8")
+        formData.append("id",this.state.id)
         // for (var i=0; i < photos.files.length; i++){
         //     formData.append()
         // }
@@ -162,13 +171,100 @@ class LectureInfoContainer extends Component{
             headers:{
               'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyZGU0YmMxZi0zY2IxLTQ4ZDMtOWY3NC0wYTAxYmU5M2RkZDQiLCJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJzdWIiOiJGYW1pbHktVXNlci1iOTNjN2YxNC0xMjI0LTQ1OGItYWFmMS02NTI5NjM3MTA5M2QiLCJpYXQiOjE1NTM4OTU4MDgsImV4cCI6MTU1NjQ4NzgwOCwiYXV0aG9yaXRpZXMiOlsiU1lTVEVNX0FETUlOIl0sInJlZnJlc2hDb3VudCI6MCwicmVmcmVzaExpbWl0IjoyMDAwfQ.LwFp-NR5Wdmo2lxzOoRM7t0uze1EFcLhRGiVfdJR6cI'
             }
-          }).then(res => res.json()).then(response => {
+          }).then(res => {
+            if(res.ok){
+            // console.log(res.status)
+            res.json().then(response => {
               console.log(response)
+              alert("更新成功!")
+              
+
+
+              const url = "http://localhost:8080/family/lecture"
+              fetch(url,{
+                method: 'GET',
+                headers:{
+                  'Content-Type': 'application/json',
+                  'Authorization' : 'Bearer eyJhbGciOiJIUzI1NiJ9.eyJqdGkiOiIyZGU0YmMxZi0zY2IxLTQ4ZDMtOWY3NC0wYTAxYmU5M2RkZDQiLCJpc3MiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJhdWQiOiJodHRwOi8vZXhhbXBsZS5vcmciLCJzdWIiOiJGYW1pbHktVXNlci1iOTNjN2YxNC0xMjI0LTQ1OGItYWFmMS02NTI5NjM3MTA5M2QiLCJpYXQiOjE1NTM4OTU4MDgsImV4cCI6MTU1NjQ4NzgwOCwiYXV0aG9yaXRpZXMiOlsiU1lTVEVNX0FETUlOIl0sInJlZnJlc2hDb3VudCI6MCwicmVmcmVzaExpbWl0IjoyMDAwfQ.LwFp-NR5Wdmo2lxzOoRM7t0uze1EFcLhRGiVfdJR6cI'
+                }
+              }).then(res => {
+                if (res.ok){
+                res.json().then(response => {
+                    const lectureInfoJson = response.past
+                    const [lectureInfoActive] = response.active
+                    lectureInfoJson.push(lectureInfoActive)
+                    const res = []
+                    lectureInfoJson.map(item => res.push(item))
+              this.setState({allLectureInfo:lectureInfoJson,
+                              lectureName:"",
+                              hostName:"",
+                              hostTitle:"",
+                              hostTag:"",
+                              hostIntro:"",
+                              lectureTags:[],
+                              lectureIntro:"",
+                              startDate:"",
+                              startTime:0,
+                              recapVideoTimeElapsed:0,
+                              id:"",
+                              ongoing:false,
+                              host_avatar:"",
+                              host_avatar_uri:"",
+                              host_avatar_rect:"",
+                              host_avatar_rect_uri:"",
+                              lecture_banner:"",
+                              lecture_banner_uri:"",
+                              sharing_pic:"",
+                              sharing_pic_uri:""
+                              })
+        }).catch(error => console.error("Error",error))}
+        else{
+          alert(res.statusText)
+        }
+      })
+
+
+
+
+
+
+        //       this.setState(prevState => {
+        //         return ({
+        //       allLectureInfo: prevState.allLectureInfo,
+        //       lectureName:"",
+        //       hostName:"",
+        //       hostTitle:"",
+        //       hostTag:"",
+        //       hostIntro:"",
+        //       lectureTags:[],
+        //       lectureIntro:"",
+        //       startDate:"",
+        //       startTime:0,
+        //       recapVideoTimeElapsed:0,
+        //       id:"",
+        //       ongoing:false,
+        //       host_avatar:"",
+        //       host_avatar_uri:"",
+        //       host_avatar_rect:"",
+        //       host_avatar_rect_uri:"",
+        //       lecture_banner:"",
+        //       lecture_banner_uri:"",
+        //       sharing_pic:"",
+        //       sharing_pic_uri:""
+        //     })
+        // })
+              formData = new FormData()
             //   this.setState({id: ID})
             //   alert("Lecture text information upload success!")
             //   eventProxy.trigger("id",ID)
               // this.props.transferId(ID)
-          }).catch(error => console.error("Error",error))})
+          })
+        }
+        else{
+          alert(res.statusText)
+        }
+        }).catch(error => console.error("Error",error))
+        })
       }
       else{
         alert(res.statusText)
@@ -224,7 +320,7 @@ class LectureInfoContainer extends Component{
 
     render(){
         console.log(this.state)
-        if(this.state.allLectureInfo != []) {
+        if(JsonUitl.mapToJson(JsonUitl.objToStrMap(this.state.allLectureInfo)) != JsonUitl.mapToJson(JsonUitl.objToStrMap([]))) {
         //         const lecturetaglist = (
         //     <select>
         //         {this.state.lectureTags.map(tag => <option>
@@ -269,7 +365,7 @@ class LectureInfoContainer extends Component{
         }
         else{
             return(
-                <p></p>
+                <h1>无数据</h1>
             )
         }
     }
