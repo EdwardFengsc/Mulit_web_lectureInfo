@@ -12,7 +12,7 @@ class Routes extends Component{
         return(
             <Router history={browserHistory}>
         <Route path='/' component={App}>
-            <IndexRoute component={Home}/>
+            <IndexRoute component={Upload}/>
             {/* TODO: how to configure home page? */}
             <Route path='home' component={Home}/>
             <Route path="upload" component={Upload}/>

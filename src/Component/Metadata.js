@@ -155,7 +155,7 @@ function Metadata(props){
             <br />
             {props.host_avatar == "" ? 
                 <label>
-                <div className="hint">上传</div>
+                <div className="upload">上传</div>
                 <input 
                 type="file" 
                 name="host_avatar"
@@ -165,7 +165,7 @@ function Metadata(props){
                 // required
                 />
                 </label> :  <label>
-            <div className= "hint">{props.host_avatar}</div>
+            <div className= "upload">{props.host_avatar}</div>
             <input 
             type="file" 
             name="host_avatar"
@@ -180,7 +180,7 @@ function Metadata(props){
             <br />
             {props.host_avatar_rect == "" ? 
                 <label>
-                <div className="hint">上传</div>
+                <div className="upload">上传</div>
                 <input 
                 type="file" 
                 name="host_avatar_rect"
@@ -190,7 +190,7 @@ function Metadata(props){
                 // required
                 />
                 </label> :  <label>
-            <div className= "hint">{props.host_avatar_rect}</div>
+            <div className= "upload">{props.host_avatar_rect}</div>
             <input 
             type="file" 
             name="host_avatar_rect"
@@ -205,7 +205,7 @@ function Metadata(props){
             <br />
             {props.lecture_banner == "" ? 
                 <label>
-                <div className="hint">上传</div>
+                <div className="upload">上传</div>
                 <input 
                 type="file" 
                 name="lecture_banner"
@@ -215,7 +215,7 @@ function Metadata(props){
                 // required
                 />
                 </label> :  <label>
-            <div className= "hint">{props.lecture_banner}</div>
+            <div className= "upload">{props.lecture_banner}</div>
             <input 
             type="file" 
             name="lecture_banner"
@@ -231,7 +231,7 @@ function Metadata(props){
              
             {props.sharing_pic == "" ? 
                 <label>
-            <div className= "hint">上传</div>
+            <div className= "upload">上传</div>
             <input 
             type="file" 
             name="sharing_pic"
@@ -241,7 +241,7 @@ function Metadata(props){
             // required
             />
             </label> :  <label>
-            <div className= "hint">{props.sharing_pic}</div>
+            <div className= "upload">{props.sharing_pic}</div>
             <input 
             type="file" 
             name="sharing_pic"

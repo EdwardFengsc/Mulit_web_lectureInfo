@@ -16,9 +16,6 @@ form {
     font-size: calc(10px + 2vmin);
     padding: 5px
   }
-  code {
-    font-family: Arial, Helvetica, sans-serif;
-  }
   button{
     font-family: Arial, Helvetica, sans-serif;
     font-size: 20px;
@@ -33,7 +30,7 @@ form {
     width: 100%;
   }
   
-  .hint {
+  .upload {
     position: absolute;
     left: 0;
     top: 0;
