@@ -8,7 +8,7 @@ function LectureTag(props){
         onChange={props.handleChange}
         size="10"
         style={{marginTop:"5px"}}
-        required
+        // required
         />
         <button 
         className="btn btn-primary btn-sm"

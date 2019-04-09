@@ -15,7 +15,7 @@ function Metadata(props){
                 placeholder="LectureName"
                 onChange={props.handleChange}
                 size="12"
-                required
+                // required
                 />
                 <br />
                         主讲人名字:
@@ -27,7 +27,7 @@ function Metadata(props){
                 placeholder="HostName"
                 onChange={props.handleChange}
                 size="12"
-                required
+                // required
                 />
                 <br />
                         主讲人头衔:
@@ -39,7 +39,7 @@ function Metadata(props){
                 placeholder="hostTitle"
                 onChange={props.handleChange}
                 size="12"
-                required
+                // required
                 />
                 <br />
                     讲师标签:
@@ -51,7 +51,7 @@ function Metadata(props){
                 placeholder="hostTag"
                 onChange={props.handleChange}
                 size="12"
-                required
+                // required
                 />
                 {/* <br />
                 <input 
@@ -71,7 +71,7 @@ function Metadata(props){
                 cols="40"
                 placeholder="hostIntro"
                 onChange={props.handleChange}
-                required
+                // required
                 />
                 <br />
                     分享会标签:
@@ -99,7 +99,7 @@ function Metadata(props){
                 cols="40"
                 placeholder="lectureIntro"
                 onChange={props.handleChange}
-                required
+                // required
                 />
                 {/* <input 
                 type="text" 
@@ -117,7 +117,7 @@ function Metadata(props){
                 value={props.startDate}
                 // placeholder="startTime"
                 onChange={props.handleChange}
-                required
+                // required
                 />
                 {/* <br />
                     RecapVideoTimeElapsed:
@@ -162,7 +162,7 @@ function Metadata(props){
                 value={props.host_avatar}
                 accept="image/png"
                 onChange={props.handleChange}
-                required
+                // required
                 />
                 </label> :  <label>
             <div className= "hint">{props.host_avatar}</div>
@@ -187,7 +187,7 @@ function Metadata(props){
                 value={props.host_avatar_rect}
                 accept="image/png"
                 onChange={props.handleChange}
-                required
+                // required
                 />
                 </label> :  <label>
             <div className= "hint">{props.host_avatar_rect}</div>
@@ -212,7 +212,7 @@ function Metadata(props){
                 value={props.lecture_banner}
                 accept="image/png"
                 onChange={props.handleChange}
-                required
+                // required
                 />
                 </label> :  <label>
             <div className= "hint">{props.lecture_banner}</div>
@@ -238,7 +238,7 @@ function Metadata(props){
             value={props.sharing_pic}
             accept="image/png"
             onChange={props.handleChange}
-            required
+            // required
             />
             </label> :  <label>
             <div className= "hint">{props.sharing_pic}</div>

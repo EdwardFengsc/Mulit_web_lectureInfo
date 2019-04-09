@@ -42,9 +42,25 @@ class LectureInfoContainer extends Component{
         //     console.log(prevState.allLectureInfo[key])
         // })
         this.setState(prevState => {
-            const startDate = (new Date(prevState.allLectureInfo[value].startTime)).toISOString().slice(0,16)
+          const year = (new Date(prevState.allLectureInfo[value].startTime)).getFullYear()
+          const month = (new Date(prevState.allLectureInfo[value].startTime)).getMonth().toString().length === 1 ? 
+          '0' + ((new Date(prevState.allLectureInfo[value].startTime)).getMonth() + 1).toString() : 
+          ((new Date(prevState.allLectureInfo[value].startTime)).getMonth() + 1)
+          const date = (new Date(prevState.allLectureInfo[value].startTime)).getDate().toString().length === 1 ? 
+          '0' + ((new Date(prevState.allLectureInfo[value].startTime)).getDate()).toString() : 
+          ((new Date(prevState.allLectureInfo[value].startTime)).getDate()).toString()
+          const hour = ((new Date(prevState.allLectureInfo[value].startTime)).getHours()).toString().length === 1 ?
+          '0' +  ((new Date(prevState.allLectureInfo[value].startTime)).getHours()).toString() :
+          ((new Date(prevState.allLectureInfo[value].startTime)).getHours()).toString()
+          const minute = ((new Date(prevState.allLectureInfo[value].startTime)).getMinutes()).toString().length === 1 ?
+          '0' + ((new Date(prevState.allLectureInfo[value].startTime)).getMinutes()).toString() :
+          ((new Date(prevState.allLectureInfo[value].startTime)).getMinutes()).toString()
+          // console.log(year,month,date,hour,minute)
+          const startDate = year + '-' + month + '-' + date + 'T' + hour + ':' + minute
+          console.log(startDate)
+          // const startDate = (new Date(prevState.allLectureInfo[value].startTime)).toISOString().slice(0,16)
             // var parts = startDate.match(/(\d{2}) (\d{2}) (\d{4}) (\d{2}):(\d{2})/);
-            console.log(startDate)
+            // console.log(startDate)
             // console.log(parts)
             return {
             allLectureInfo:prevState.allLectureInfo,
@@ -334,12 +350,27 @@ class LectureInfoContainer extends Component{
             <select className="form-control" name="id" onChange={this.handleSelectChange} size="20">
                 {this.state.allLectureInfo.map((lecture, index) => 
                 {
-                  const date =  (new Date(lecture.startTime)).toISOString().slice(0,16)
+                  const year = (new Date(lecture.startTime)).getFullYear()
+                  const month = (new Date(lecture.startTime)).getMonth().toString().length === 1 ? 
+                  '0' + ((new Date(lecture.startTime)).getMonth() + 1).toString() : 
+                  ((new Date(lecture.startTime)).getMonth() + 1)
+                  const date = (new Date(lecture.startTime)).getDate().toString().length === 1 ? 
+                  '0' + ((new Date(lecture.startTime)).getDate()).toString() : 
+                  ((new Date(lecture.startTime)).getDate()).toString()
+                  const hour = ((new Date(lecture.startTime)).getHours()).toString().length === 1 ?
+                  '0' +  ((new Date(lecture.startTime)).getHours()).toString() :
+                  ((new Date(lecture.startTime)).getHours()).toString()
+                  const minute = ((new Date(lecture.startTime)).getMinutes()).toString().length === 1 ?
+                  '0' + ((new Date(lecture.startTime)).getMinutes()).toString() :
+                  ((new Date(lecture.startTime)).getMinutes()).toString()
+                  // console.log(year,month,date,hour,minute)
+                  const startDate = year + '-' + month + '-' + date + ' ' + hour + ':' + minute
+                  // const date =  (new Date(lecture.startTime)).toISOString().slice(0,16)
                 // const date = (new Date(lecture.startTime)).toString()
                 return(
                     <option value={index} key={index}> 
                     分享会名称:{lecture.lectureName}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主讲人名字:{lecture.hostName} 
-                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享会开始时间: {date} 
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分享会开始时间: {startDate} 
                     </option>
                 )
                 }
