@@ -13,7 +13,7 @@ class MetadataContainer extends Component {
         hostTitle:"professor",
         hostTag:"great",
         hostIntro:"hhhadasdasdsadasdhasihfiahisahfihiahfiashfifhsai",
-        lectureTags:["aaa","bbb"],
+        lectureTags:[],
         lectureIntro:"aa",
         startDate:"",
         startTime:12312414,

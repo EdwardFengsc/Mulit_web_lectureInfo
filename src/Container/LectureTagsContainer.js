@@ -45,15 +45,15 @@ class LectureTagsContainer extends Component{
         // console.log(this.state.lectureTags)
         this.state={
             lectureTags:[
-                {id:1,value:""}
             ]
         }
         this.handleChange = this.handleChange.bind(this)
         this.handleDelete = this.handleDelete.bind(this)
         this.handleAdd = this.handleAdd.bind(this)
     }
-    // componentWillReceiveProps(nextProps){
-    //     // console.log(typeof(nextProps.tags))
+
+    componentWillReceiveProps(nextProps){
+        // console.log(typeof(nextProps.tags))
     //     if (JsonUtils.mapToJson(JsonUtils.objToStrMap(nextProps.tags)) == JsonUtils.mapToJson(JsonUtils.objToStrMap([]))){
     //         this.setState({lectureTags:[{id:1,value:""}]})
     //         counter = 1
@@ -67,7 +67,12 @@ class LectureTagsContainer extends Component{
     //     this.setState({lectureTags:newtags})
     //     // console.log(newtags)
     // }
-    // }
+    const newtags = []
+    for(let i=0;i < nextProps.tags.length;i++){
+        newtags.push({id:i,value:nextProps.tags[i]})
+    }
+    this.setState({lectureTags:newtags})
+    }
 
     // componentDidUpdate(prevProps){
     //     if(this.props.lectureTags)
@@ -88,6 +93,16 @@ class LectureTagsContainer extends Component{
     // }
     // componentDidUpdate(){
     //     render()
+    // }
+
+
+    // componentWillUpdate(nextProps){
+    //     if(JsonUtils.mapToJson(JsonUtils.objToStrMap(nextProps.tags)) === JsonUtils.mapToJson(JsonUtils.objToStrMap([]))){
+    //         console.log("yes")
+    //     }
+    //     else{
+    //         console.log("no")
+    //     }
     // }
     handleChange(event)
     {
@@ -147,6 +162,12 @@ class LectureTagsContainer extends Component{
                 prevState.lectureTags.map( item => {return item})
             )
             newtags.push({id:counter,value:""})
+            const tags = (
+                newtags.map(item =>
+                    {return item.value}
+                    )
+            )
+            this.props.setState({lectureTags: tags})    
             return {
                 lectureTags:newtags
             }
@@ -174,6 +195,8 @@ class LectureTagsContainer extends Component{
     //     eventProxy.trigger("lectureTags", this.state.lectureTags)
     // }
     render(){
+        counter = this.state.lectureTags.length
+        console.log(counter)
         // console.log(tags)
         // console.log(this.props)
         // console.log(this.props.tags)

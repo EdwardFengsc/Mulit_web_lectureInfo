@@ -1,5 +1,6 @@
 import React from "react"
 import LectureInfoTagsContainer from "../Container/LectureInfoTagsContainer"
+import LectureTagsContainer from "../Container/LectureTagsContainer"
 function LectureUpdate(props){
     // console.log(props.lectureTags)
     return(
@@ -71,7 +72,7 @@ function LectureUpdate(props){
                 <br />
                     分享会标签:
                 <br />
-                <LectureInfoTagsContainer
+                <LectureTagsContainer
                 setState = {props.setState}
                 tags = {props.lectureTags}
                 />

@@ -78,7 +78,7 @@ function Metadata(props){
                 <br />
                 <LectureTagsContainer 
                 setState={props.setState}
-                tags = {[]}
+                tags = {props.lectureTags}
                 />
                 {/* Todo lectureTags!!!!!! */}
                 {/* <input 
